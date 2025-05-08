@@ -92,7 +92,7 @@ causa-efecto reales?
 ---
 ## Study: Cereal Keeps Girls Slim
  
-Se observó que las participantes que desayunaban tenían un **índice de masa corporal promedio más bajo**, un indicador común de obesidad, que las que no desayunaban. El índice fue aún más bajo para las que **desayunaban cereales**, según los hallazgos del **estudio realizado por el Instituto de Investigación Médica de Maryland con fondos de NIH y el fabricante de cereales General Mills**.
+Se observó que las mujeres que desayunaban tenían un **índice de masa corporal promedio más bajo**, un indicador común de obesidad, que las que no desayunaban. El índice fue aún más bajo para las que **desayunaban cereales**, según los hallazgos del **estudio realizado por el Instituto de Investigación Médica de Maryland con fondos de NIH y el fabricante de cereales General Mills**.
 
 [...]
 
@@ -100,7 +100,7 @@ Los resultados se obtuvieron de una encuesta de NIH de 2379 mujeres en Californi
 
 [...]
 
-Como parte de la encuesta, se preguntaba a las participantes una vez al año qué habían comido durante los tres días anteriores...
+Como parte de la encuesta, se preguntaba a las mujeres una vez al año qué habían comido durante los tres días anteriores...
 
 [Fuente](https://www.cbsnews.com/news/study-cereal-keeps-girls-slim/)
 
@@ -908,6 +908,16 @@ media de precio por huésped.
 nos da una medida de cuánto esperamos que varíe la media muestral de
 muestra a muestra.
 
+---
+
+## Variabilidad de los estadísticos muestrales
+
+.question[
+Supongamos que dividimos la clase por la mitad y le preguntamos a cada estudiante su altura. 
+Luego, calculamos la altura media de los estudiantes
+en cada lado del salón. ¿Esperarías que estas dos medias sean exactamente
+iguales, cercanas pero no iguales, o muy diferentes?
+]
 
 
 ---
@@ -1457,8 +1467,9 @@ class: center, middle
 **Tenemos un 95% de confianza en que el precio medio por huésped por noche para Airbnbs en Asheville, NC está entre `r round(ci$lower_b,1)` y `r round(ci$upper_b,1)` dólares.**
 ]
 
+
 ---
-## Fundamentos teóricos: intuición 
+## Fundamentos teóricos: intuición y notación
 
 - Suponemos que nuestros datos vienen de una distribución desconocida $F$.  
 - A partir de la muestra observada, construimos la **distribución empírica** $\hat{F}$, que básicamente otorga la misma probabilidad a cada dato observado.  
@@ -1471,18 +1482,17 @@ class: center, middle
 
 - **Idea principal**: En muestras grandes, $\hat{F}$ se acerca cada vez más a $F$.  
   - (Ley de Grandes Números / Consistencia de la distribución empírica).  
-- **Consecuencia**: Muestrear de $\hat{F}$ imita suficientemente bien el acto de muestrear de $F$.  
-- **Bootstrap**:  
-  - Genera la **distribución bootstrap** del estimador, que (bajo condiciones razonables) se aproxima a la distribución real que tendría dicho estimador si muestrasemos repetidamente de la población.  
-  - Esta aproximación permite estimar errores estándar, intervalos de confianza, etc., **sin** conocer $F$ ni recurrir a fórmulas complicadas.
-
+- **Consecuencia**: Muestrear de $\hat{F}$ imita suficientemente bien el acto de muestrear de $F$. 
 
 ---
 
 ## Fundamentos teóricos: por qué funciona
 
-**Conclusión**: Pese a que estamos “inventando” datos muestreando de $\hat{F}$, resulta que, cuando $n$ es grande, este procedimiento es **estadísticamente confiable** y converge a la misma respuesta que obtendríamos de $F$.
+- **Bootstrap**:  
+  - Genera la **distribución bootstrap** del estimador, que (bajo condiciones razonables) se aproxima a la distribución real que tendría dicho estimador si muestrasemos repetidamente de la población.  
+  - Esta aproximación permite estimar errores estándar, intervalos de confianza, etc., **sin** conocer $F$ ni recurrir a fórmulas complicadas.
 
+**Conclusión**: Pese a que estamos “inventando” datos muestreando de $\hat{F}$, resulta que, cuando $n$ es grande, este procedimiento es **estadísticamente confiable** y converge a la misma respuesta que obtendríamos de $F$.
 
 ---
 ## Bibliografía

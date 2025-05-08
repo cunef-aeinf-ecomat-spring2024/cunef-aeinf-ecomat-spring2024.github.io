@@ -247,7 +247,7 @@ flights %>% left_join(planes, by="tailnum") %>%
     dep_delay_mean = mean(dep_delay, na.rm = TRUE),
   ) %>% 
   ggplot(aes(x = age, y = dep_delay_mean)) +
-  geom_point() +
+  geom_col() + geom_smooth() +
   scale_x_continuous("Age of plane (years)", breaks = seq(0, 30, by = 10)) +
   scale_y_continuous("Mean Departure Delay (minutes)") + theme_minimal()
 ```

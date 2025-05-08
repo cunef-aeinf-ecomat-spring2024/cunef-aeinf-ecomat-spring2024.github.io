@@ -63,6 +63,14 @@ flights_dt <- flights %>% mutate(dep_time = make_datetime(year, month, day,
 ```
 
 
+```{r}
+flights_dt %>% mutate(difference = as.numeric(arr_time-dep_time)) %>% 
+  mutate(actual_arr_time = if_else(as.numeric(difference) < 0 , arr_time + days(1), arr_time)) %>% 
+  mutate(difference = actual_arr_time-dep_time ) %>% 
+  ggplot(aes(x=difference, y=air_time)) + geom_point()
+```
+
+
 ## Ejercicio 2
 
 Visualiza la distribución de vuelos según el **día de la semana** en el que despegan.

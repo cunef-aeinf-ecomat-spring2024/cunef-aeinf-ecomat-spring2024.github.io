@@ -4,7 +4,7 @@
     <title>Tema 4</title>
     <meta charset="utf-8" />
     <meta name="author" content="Roi Naveiro" />
-    <script src="libs/header-attrs-2.28/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.25/header-attrs.js"></script>
     <link rel="stylesheet" href="ds_slides.css" type="text/css" />
   </head>
   <body>
@@ -78,7 +78,7 @@ causa-efecto reales?
 ---
 ## Study: Cereal Keeps Girls Slim
  
-Se observó que las participantes que desayunaban tenían un **índice de masa corporal promedio más bajo**, un indicador común de obesidad, que las que no desayunaban. El índice fue aún más bajo para las que **desayunaban cereales**, según los hallazgos del **estudio realizado por el Instituto de Investigación Médica de Maryland con fondos de NIH y el fabricante de cereales General Mills**.
+Se observó que las mujeres que desayunaban tenían un **índice de masa corporal promedio más bajo**, un indicador común de obesidad, que las que no desayunaban. El índice fue aún más bajo para las que **desayunaban cereales**, según los hallazgos del **estudio realizado por el Instituto de Investigación Médica de Maryland con fondos de NIH y el fabricante de cereales General Mills**.
 
 [...]
 
@@ -86,7 +86,7 @@ Los resultados se obtuvieron de una encuesta de NIH de 2379 mujeres en Californi
 
 [...]
 
-Como parte de la encuesta, se preguntaba a las participantes una vez al año qué habían comido durante los tres días anteriores...
+Como parte de la encuesta, se preguntaba a las mujeres una vez al año qué habían comido durante los tres días anteriores...
 
 [Fuente](https://www.cbsnews.com/news/study-cereal-keeps-girls-slim/)
 
@@ -219,7 +219,7 @@ Un modelo estadístico es un modelo matemático que incorpora un conjunto de sup
 ## ¿Qué son los modelos estadísticos?
 
 
-``` r
+```r
 ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() + theme_minimal() +
   geom_smooth(method="lm", se=FALSE, color='red')
 ```
@@ -292,7 +292,7 @@ simplificaciones de la realidad que nos sirven de algún propósito
 Discute los elementos anteriores en este ejemplo.
 
 
-``` r
+```r
 ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() + theme_minimal() +
   geom_smooth(method="lm", se=FALSE, color='red')
 ```
@@ -303,7 +303,7 @@ ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() + theme_minimal() +
 ## Ajustando modelos
 
 
-``` r
+```r
 ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() + theme_minimal()
 ```
 
@@ -326,7 +326,7 @@ ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() + theme_minimal()
 ## Ajustando modelos
 
 
-``` r
+```r
 models &lt;- tibble(
   a1 = runif(250, -20, 40),
   a2 = runif(250, -5, 5)
@@ -361,7 +361,7 @@ punto a la recta del modelo
 Para obtener el valor de los coeficientes usando R, hacemos
 
 
-``` r
+```r
 reg_mod &lt;- lm(mpg ~ wt, data = mtcars)
 coef(reg_mod)
 ```
@@ -439,7 +439,7 @@ Para esto, utilizamos `modelr` de `tidyverse`
 * Primero creamos una red de puntos de la variable predictora
 
 
-``` r
+```r
 library(modelr)
 grid &lt;- mtcars %&gt;% 
   data_grid(wt) 
@@ -470,7 +470,7 @@ grid
 * Con el modelo, podemos añadir predicciones
 
 
-``` r
+```r
 reg_mod &lt;- lm(mpg ~ wt, data = mtcars)
 
 grid &lt;- grid %&gt;% 
@@ -500,7 +500,7 @@ grid
 ## Visualización de modelos
 
 
-``` r
+```r
 ggplot(mtcars, aes(wt)) +
   geom_point(aes(y = mpg)) + theme_minimal() +
   geom_line(aes(y = pred), data = grid, colour = "red", size = 1)
@@ -515,7 +515,7 @@ ggplot(mtcars, aes(wt)) +
 Añadimos residuos usando
 
 
-``` r
+```r
 reg_mod &lt;- lm(mpg ~ wt, data = mtcars)
 
 mtcars &lt;- mtcars %&gt;% add_residuals(reg_mod)
@@ -525,7 +525,7 @@ mtcars &lt;- mtcars %&gt;% add_residuals(reg_mod)
 ## Visualización de modelos
 
 
-``` r
+```r
 ggplot(mtcars, aes(wt, resid)) + 
   geom_ref_line(h = 0) +
   geom_point() 
@@ -555,7 +555,7 @@ Volvamos a la regresión anterior. La librería `broom` de tidyverse, sirve para
 ordenar los resultados de `lm`. **OJO**: no se carga automáticamente al cargar `tidyverse`.
 
 
-``` r
+```r
 library(broom)
 mod_reg &lt;- lm(mpg ~ wt, data=mtcars)
 tidy(mod_reg)
@@ -611,7 +611,7 @@ Sustituímos wt por cero
 Vamos a modelizar cómo afectan los años de experiencia en el salario de un profesor
 
 
-``` r
+```r
 library(openintro)
 data("teacher")
 set.seed(1)
@@ -627,7 +627,7 @@ teacher &lt;- teacher %&gt;%
 Vamos a modelizar cómo afectan los años de experiencia en el salario de un profesor
 
 
-``` r
+```r
 ggplot(teacher, aes(x=years, y=base)) + geom_point() + theme_minimal()
 ```
 
@@ -644,7 +644,7 @@ Determina la predicción del salario de un profesor con 15 años de experiencia.
 ## Interpretación de la Regresión Lineal
 
 
-``` r
+```r
 ggplot(teacher, aes(x=years, y=base)) + geom_point() +
   geom_smooth(method="lm", color='red', se=FALSE) + theme_minimal()
 ```
@@ -671,7 +671,7 @@ ggplot(teacher, aes(x=years, y=base)) + geom_point() +
 * Ajustamos un modelo
 
 
-``` r
+```r
 mod_base_degree &lt;- lm(base ~ degree, data=teacher)
 tidy(mod_base_degree)
 ```
@@ -701,7 +701,7 @@ sino 0.
 ## Regresión Lineal: Predictores Categóricos
 
 
-``` r
+```r
 mod_base_degree &lt;- lm(base ~ degree, data=teacher)
 tidy(mod_base_degree)
 ```
@@ -719,7 +719,7 @@ Interpreta cada coeficiente
 ## Regresión Lineal: Visualizamos las predicciones
 
 
-``` r
+```r
 mod_base_degree &lt;- lm(base ~ degree, data=teacher)
 
 grid &lt;- teacher %&gt;% 
@@ -740,7 +740,7 @@ grid
 ## Regresión Lineal: Visualizamos las predicciones
 
 
-``` r
+```r
 ggplot(teacher, aes(x=degree)) + geom_point(aes(y=base)) + theme_minimal() +
   geom_point(data = grid, aes(y = pred), colour = "red", size = 4)
 ```
@@ -782,7 +782,7 @@ y_i = \textbf{x}_i^\top\boldsymbol{\beta} + \epsilon = \beta_{0} + \beta_1 x_{i1
 En R
 
 
-``` r
+```r
 mod_reg &lt;- lm(base ~ years + degree, data = teacher)
 tidy(mod_reg)
 ```
@@ -802,7 +802,7 @@ tidy(mod_reg)
 Visualizamos las predicciones
 
 
-``` r
+```r
 grid &lt;- teacher %&gt;% 
   data_grid(years, degree) %&gt;% 
   add_predictions(mod_reg)
@@ -832,7 +832,7 @@ grid
 Visualizamos las predicciones
 
 
-``` r
+```r
 ggplot(teacher, aes(years, base, colour = degree)) + 
   geom_point() + 
   geom_line(data = grid, aes(y = pred)) + theme_minimal()
@@ -947,7 +947,7 @@ Nuestro estimador puntual para el precio promedio por huésped en la población 
 la media observada en la muestra:
 
 
-``` r
+```r
 abb &lt;- read_csv("data/asheville.csv")
 abb %&gt;% 
   summarize(mean_price = mean(ppg))
@@ -1009,6 +1009,16 @@ media de precio por huésped.
 nos da una medida de cuánto esperamos que varíe la media muestral de
 muestra a muestra.
 
+---
+
+## Variabilidad de los estadísticos muestrales
+
+.question[
+Supongamos que dividimos la clase por la mitad y le preguntamos a cada estudiante su altura. 
+Luego, calculamos la altura media de los estudiantes
+en cada lado del salón. ¿Esperarías que estas dos medias sean exactamente
+iguales, cercanas pero no iguales, o muy diferentes?
+]
 
 
 ---
@@ -1158,7 +1168,7 @@ El objetivo del paquete infer es realizar inferencia estadística utilizando una
 gramática que se integra con el marco de diseño tidyverse.
 
 
-``` r
+```r
 library(infer)
 ```
 
@@ -1172,7 +1182,7 @@ library(infer)
 
 
 
-``` r
+```r
 set.seed(123)
 ```
 
@@ -1185,7 +1195,7 @@ En otras palabras, asegura que obtendremos la misma muestra aleatoria cada vez q
 ## Generar medias bootstrap
 
 
-``` r
+```r
 abb %&gt;%
   # specify the variable of interest
 * specify(response = ppg)
@@ -1201,7 +1211,7 @@ bootstrap).
 ## Generar medias bootstrap
 
 
-``` r
+```r
 abb %&gt;%
   # specify the variable of interest
   specify(response = ppg) %&gt;% 
@@ -1216,7 +1226,7 @@ abb %&gt;%
 ## Generar medias bootstrap
 
 
-``` r
+```r
 abb %&gt;%
   # specify the variable of interest
   specify(response = ppg) %&gt;% 
@@ -1237,12 +1247,12 @@ las medianas bootstrap.
 
 
 
-``` r
+```r
 num_reps &lt;- 100
 ```
 
 
-``` r
+```r
 # save resulting bootstrap distribution
 *boot_dist &lt;- abb %&gt;%
   # specify the variable of interest
@@ -1263,7 +1273,7 @@ num_reps &lt;- 100
 --
 
 
-``` r
+```r
 boot_dist
 ```
 
@@ -1303,7 +1313,7 @@ Un intervalo de confianza del 95% contiene el 95% central de la distribución bo
 Usando `dplyr`:
 
 
-``` r
+```r
 ci &lt;- boot_dist %&gt;%
   summarise(lower_b = quantile(stat, 0.025), 
             upper_b = quantile(stat, 0.975))
@@ -1325,7 +1335,7 @@ Utilizando `geom_vline()` para marcar los límites del intervalo de confianza
 
 
 
-``` r
+```r
 *ggplot(data = boot_dist, mapping = aes(x = stat)) +
   geom_histogram(binwidth = 5, alpha = .5) +
 * geom_vline(xintercept = ci$lower_b,
@@ -1350,7 +1360,7 @@ Utilizando `geom_vline()` para marcar los límites del intervalo de confianza
 ## Visualizar un intervalo de confianza (Opción 2)
 
 
-``` r
+```r
 *visualize(boot_dist) +
 * shade_confidence_interval(endpoints = ci)+
   labs(title = "Distribución Bootstrap de la media de precio por cliente",
@@ -1408,8 +1418,9 @@ class: center, middle
 **Tenemos un 95% de confianza en que el precio medio por huésped por noche para Airbnbs en Asheville, NC está entre 60.9 y 92.1 dólares.**
 ]
 
+
 ---
-## Fundamentos teóricos: intuición 
+## Fundamentos teóricos: intuición y notación
 
 - Suponemos que nuestros datos vienen de una distribución desconocida `\(F\)`.  
 - A partir de la muestra observada, construimos la **distribución empírica** `\(\hat{F}\)`, que básicamente otorga la misma probabilidad a cada dato observado.  
@@ -1422,18 +1433,17 @@ class: center, middle
 
 - **Idea principal**: En muestras grandes, `\(\hat{F}\)` se acerca cada vez más a `\(F\)`.  
   - (Ley de Grandes Números / Consistencia de la distribución empírica).  
-- **Consecuencia**: Muestrear de `\(\hat{F}\)` imita suficientemente bien el acto de muestrear de `\(F\)`.  
-- **Bootstrap**:  
-  - Genera la **distribución bootstrap** del estimador, que (bajo condiciones razonables) se aproxima a la distribución real que tendría dicho estimador si muestrasemos repetidamente de la población.  
-  - Esta aproximación permite estimar errores estándar, intervalos de confianza, etc., **sin** conocer `\(F\)` ni recurrir a fórmulas complicadas.
-
+- **Consecuencia**: Muestrear de `\(\hat{F}\)` imita suficientemente bien el acto de muestrear de `\(F\)`. 
 
 ---
 
 ## Fundamentos teóricos: por qué funciona
 
-**Conclusión**: Pese a que estamos “inventando” datos muestreando de `\(\hat{F}\)`, resulta que, cuando `\(n\)` es grande, este procedimiento es **estadísticamente confiable** y converge a la misma respuesta que obtendríamos de `\(F\)`.
+- **Bootstrap**:  
+  - Genera la **distribución bootstrap** del estimador, que (bajo condiciones razonables) se aproxima a la distribución real que tendría dicho estimador si muestrasemos repetidamente de la población.  
+  - Esta aproximación permite estimar errores estándar, intervalos de confianza, etc., **sin** conocer `\(F\)` ni recurrir a fórmulas complicadas.
 
+**Conclusión**: Pese a que estamos “inventando” datos muestreando de `\(\hat{F}\)`, resulta que, cuando `\(n\)` es grande, este procedimiento es **estadísticamente confiable** y converge a la misma respuesta que obtendríamos de `\(F\)`.
 
 ---
 ## Bibliografía
